@@ -1,0 +1,45 @@
+* {
+  font-family: 'Raleway', sans-serif;
+  text-align: center; }
+
+#header {
+  font-size: 50px; }
+
+#directions {
+  font-size: 20px; }
+
+#template {
+  display: none; }
+
+.infoContainer {
+  border: 2px solid black;
+  width: 80%;
+  height: 150px;
+  display: inline-block;
+  padding: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-top: 20px; }
+
+#inputContainer {
+  padding: 20px; }
+
+.cityName {
+  font-size: 30px;
+  display: inline-block;
+  vertical-align: middle; }
+
+.temperature {
+  font-size: 30px;
+  display: inline-block;
+  vertical-align: middle; }
+
+.description {
+  font-size: 20px;
+  display: inline-block;
+  vertical-align: middle; }
+
+.icon {
+  display: inline-block;
+  font-size: 20px;
+  vertical-align: middle; }

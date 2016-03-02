@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Current Weather</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link href='https://fonts.googleapis.com/css?family=Raleway:400,200' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <div id="header">Weather or not</div>
+  <div id="directions">Need to find out whether or not you will need a jacket today? Enter a Zipcode to find the weather in that location and save it below!</div>
+
+  <div id="inputContainer" class="col-xs-12">
+    <input id="zipcodeInput" type="text" placeholder="Zipcode"></input>
+    <button id="submitButton">Get Weather</button>
+  </div>
+
+
+
+
+  <div class="infoContainer" id="template"> 
+   <div class="cityName" class="col-xs-3">City Name</div>
+   <div class="temperature" class="col-xs-3">Temp</div>
+   <div class="description" class="col-sm-3">descr</div>
+   <img class="icon" class="col-sm-1"></img>
+   <button class="close">X</button>
+ </div>
+
+
+ <div id="weatherContainer">
+
+
+
+
+
+
+</div>
+
+
+
+<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="main.js"></script>
+
+</body>
+</html>
