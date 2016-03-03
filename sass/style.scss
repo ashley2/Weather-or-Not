@@ -11,10 +11,10 @@
   font-size: 20px;
 }
 
-#template {
-  display: none;
-  background-color: green
-}
+// #template {
+//   display: none;
+//   background-color: green
+// }
 
 .infoContainer{
   border: 2px solid black;
@@ -38,6 +38,7 @@
   // text-align: center;
   display: inline-block;
   vertical-align: middle;
+  margin-right: 10px;
 }
 .temperature {
   font-size: 30px;

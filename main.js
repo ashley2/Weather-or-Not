@@ -98,9 +98,8 @@ function deleteCity(){
 
 
 $('#weatherContainer').on("click", ".seeMore", function(){
-
-  $('.seeMore').toggleClass('hidden');
-  $('.seeLess').toggleClass('hidden');
+  var $thisContainer = $(this).closest('.infoContainer');
+  $thisContainer.find(".seeButton").toggleClass("hidden")
 
   var $thisContainer = $(this).closest('.infoContainer');
   var $cityID = $thisContainer.data("id")
@@ -123,30 +122,19 @@ $('#weatherContainer').on("click", ".seeMore", function(){
 
 $('#weatherContainer').on("click", ".seeLess", function(){
 
-  $('#weatherContainer').remove();
+  var $thisContainer = $(this).closest('.infoContainer');
+  $thisContainer.find(".seeButton").toggleClass("hidden")
+  $thisContainer.find(".forecastContainer").empty();
+
+  fiveDayForecast();
 
 })
 
-function forecastCard(data){
-  var $card = $('.forecastContainer').first().clone();
-
-  var forecastTempMin = Math.round(data.list[0].temp.min);
-  var forecastTempMax = Math.round(data.list[0].temp.max);
-  var forecastDescription = data.list[0].weather[0].description;
-  var forecastIcon = data.list[0].weather[0].icon + ".png";
-  $card.find(".forecastTempMin").text(forecastTempMin)
-  $card.find(".forecastTempMax").text(forecastTempMax)
-  $card.find(".forecastDescription").text(forecastDescription)
-  $card.find(".forecastIcon").attr('src', "http://openweathermap.org/img/w/" + forecastIcon)
-
-  return $card;
-
-}
 
 function fiveDayForecast(data){
   var cards = [];
   for (var i = 0; i < 5; i++){
-    var $card = $('.forecastContainer').first().clone().removeClass("forecastContainer");
+    var $card = $('.forecastContainer').first().clone();
     var forecastTempMin = Math.round(data.list[i].temp.min)
     var forecastTempMax = Math.round(data.list[i].temp.max)
     var forecastDescription = data.list[i].weather[0].description;
