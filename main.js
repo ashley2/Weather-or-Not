@@ -3,7 +3,7 @@
 
 var apiKey = '4f02a83e5f8e6271e86110e9ab2440e7'
 var zipcodes;
-
+var ids;
 
 $(init);
 
@@ -37,13 +37,11 @@ function init() {
     var newZipStr = JSON.stringify(zipcodes);
     localStorage.zipcodes = newZipStr;
     saveToLocalStorage()
-    // console.log('s', localStorage.zipcodes)
     getZipInfo(newZip)
 
   }
 
   function getZipInfo(newZip){
-    console.log("getZipInfo");
     var url = `http://api.openweathermap.org/data/2.5/weather?zip=${newZip},us&units=imperial&APPID=${apiKey}`
     $.get(url)
     .success(function(data){
@@ -58,92 +56,97 @@ function init() {
   }
 
 
+
+
   function  populateZips() {
-
-    for (var i=0; i < zipcodes.length; i++){
-      console.log("popZips");
-      var url = `http://api.openweathermap.org/data/2.5/weather?zip=${zipcodes[i]},us&units=imperial&APPID=${apiKey}`
-      $.get(url)
-      .success(function(data){
-        console.log('data', data);
+    for (let zip of zipcodes){
+     getZipInfo(zip)
+   }
+ }
 
 
-        // var $results = $('<div>');
-        
-          // var card = weatherCard(data);
-          // console.log('card', card)
-
-        // $results.append(card)
-        // console.log('l', localStorage.zipcodes.length)
-        // console.log('res', $results);
-        $('#weatherContainer').append(weatherCard(data));
-
-      })
-      .error(function(err){
-        console.log(err);
-      })
-    }
 
 
+ function weatherCard(data){
+  var $card = $('.infoContainer').first().clone();
+
+  var city = data.name;
+  var temperature = data.main.temp;
+  var icon = data.weather[0].icon + ".png";
+  var description = data.weather[0].description;
+  var ID = data.id;
+
+  $card.find(".cityName").text(city)
+  $card.find(".temperature").text(temperature + "˚F")
+  $card.find(".icon").attr('src', "http://openweathermap.org/img/w/" + icon)
+  $card.find(".description").text(description)
+  $card.attr("id", ID);
+
+  return $card;
+}
+
+function deleteCity(){
+  console.log('click')
+  var $thisContainer = $(this).closest('.infoContainer');
+
+  var index = $thisContainer.index();
+  zipcodes.splice(index, 1);
+  saveToLocalStorage();
+  $thisContainer.remove();
+}
+
+
+
+
+
+//get forecast
+$('#weatherContainer').on("click", ".seeMore", function(){
+
+ var $thisContainer = $(this).closest('.infoContainer');
+ $thisContainer.append('hi')
+ $thisContainer.data(id)
+ getMoreInfo();
+});
+
+function getMoreInfo(){
+  var $thisContainer = $(this).closest('.infoContainer');
+  console.log('th', $thisContainer);
+  //get id
+  var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?id=${city ID}&cnt=5&APPID=${apiKey}'
+
+  $.get(url)
+  .success(function(data){
+
+
+    $('.forecastContainer').append(forecastCard(data));
+
+  })
+  .error(function(err){
+    console.log(err);
+  })
+
+}
+
+function  populateId() {
+  for (let id of ids){
+    getMoreInfo(id)
   }
+}
 
-  function weatherCard(data){
-    console.log("weatherCard");
-    var $card = $('.infoContainer').first().clone();
+function forecastCard(data){
+  var $card = $('.forecastContainer').first().clone();
 
-    var city = data.name;
-    var temperature = data.main.temp
-    var icon = data.weather[0].icon + ".png"
-    var description = data.weather[0].description
+  var forecastTempMin = data.list.temp.min;
+  var forecastTempMax = data.list.temp.max;
+  var forecastDescription = data.list.weather[0].description;
 
-    $card.find(".cityName").text(city)
-    $card.find(".temperature").text(temperature + "˚F")
-    $card.find(".icon").attr('src', "http://openweathermap.org/img/w/" + icon)
-    $card.find(".description").text(description)
-    $card.attr("id", "");
+  $card.find(".forecastTempMin").text(forecastTempMin)
+  $card.find(".forecastTempMax").text(forecastTempMax)
+  $card.find(".forecastDescription").text(forecastDescription)
 
+  return $card;
 
-
-
-    console.log('card', $card);
-
-
-    return $card;
-  }
-
-  function deleteCity(){
-    console.log('click')
-    var $thisContainer = $(this).closest('.infoContainer');
-
-    var index = $thisContainer.index();
-    zipcodes.splice(index, 1);
-    saveToLocalStorage();
-    $thisContainer.remove();
-
-
-  }
-
-  $('#weatherContainer').on("click", ".seeMore", function(){
-   console.log('hi hi');
-
-    var $thisContainer = $(this).closest('.infoContainer');
-
-    var index = $thisContainer.index();
-
-    $('.forecastContainer').append('hi')
-
-    // var url = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcodes},us&units=imperial&APPID=${apiKey}`
-  //   $.get(url)
-  //   .success(function(data){
-
-  //     // $('#weatherContainer').append(weatherCard(data));
-
-  //   })
-  //   .error(function(err){
-  //     console.log(err);
-  //   })
-  
-  });
+} 
 
 
 };
