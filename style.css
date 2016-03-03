@@ -44,3 +44,18 @@
   display: inline-block;
   font-size: 20px;
   vertical-align: middle; }
+
+.forecastContainer {
+  display: inline-block; }
+
+.forecastTempMin {
+  display: inline-block; }
+
+.forecastTempMax {
+  display: inline-block; }
+
+.forecastDescription {
+  display: inline-block; }
+
+.forecastIcon {
+  display: inline-block; }

@@ -108,7 +108,7 @@ $('#weatherContainer').on("click", ".seeMore", function(){
 function getMoreInfo($cityID){
   // var $thisContainer = $(this).closest('.infoContainer');
 
-  var url = `http://api.openweathermap.org/data/2.5/forecast/daily?id=${$cityID}&cnt=5&APPID=${apiKey}`
+  var url = `http://api.openweathermap.org/data/2.5/forecast/daily?id=${$cityID}us&units=imperial&cnt=5&APPID=${apiKey}`
   $.get(url)
   .success(function(data){
     console.log('data2', data);
@@ -133,8 +133,8 @@ function getMoreInfo($cityID){
 function forecastCard(data){
   var $card = $('.forecastContainer').first().clone();
 
-  var forecastTempMin = data.list[0].temp.min;
-  var forecastTempMax = data.list[0].temp.max;
+  var forecastTempMin = Math.round(data.list[0].temp.min);
+  var forecastTempMax = Math.round(data.list[0].temp.max);
   var forecastDescription = data.list[0].weather[0].description;
   var forecastIcon = data.list[0].weather[0].icon + ".png";
   $card.find(".forecastTempMin").text(forecastTempMin)
@@ -150,8 +150,8 @@ function fiveDayForecast(data){
   var cards = [];
   for (var i = 0; i < 5; i++){
     var $card = $('.forecastContainer').first().clone().removeClass("forecastContainer");
-    var forecastTempMin = data.list[i].temp.min;
-    var forecastTempMax = data.list[i].temp.max;
+    var forecastTempMin = Math.round(data.list[i].temp.min)
+    var forecastTempMax = Math.round(data.list[i].temp.max)
     var forecastDescription = data.list[i].weather[0].description;
     var forecastIcon = data.list[i].weather[0].icon + ".png";
     $card.find(".forecastTempMin").text(forecastTempMin)

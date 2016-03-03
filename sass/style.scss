@@ -28,23 +28,18 @@
 
 
 }
-
 #inputContainer {
   padding: 20px;
   // border: 2px solid black;
 
 }
-
 .cityName{
-  // border: 2px solid green;
   font-size: 30px;
   // text-align: center;
   display: inline-block;
   vertical-align: middle;
 }
-
 .temperature {
-  // border: 2px solid blue;
   font-size: 30px;
   // text-align: center;
   display: inline-block;
@@ -52,23 +47,38 @@
 
 
 }
-
 .description {
-  // border: 2px solid yellow;
   font-size: 20px;
   // text-align: center;
   display: inline-block;
   vertical-align: middle;
 }
-
-
 .icon{
   display: inline-block;
   font-size: 20px;
   vertical-align: middle;
-  // border: 2px solid red;
-  
 }
+
+.forecastContainer{
+  display: inline-block;
+}
+.forecastTempMin{
+display: inline-block;
+}
+
+.forecastTempMax {
+display: inline-block;
+}
+
+.forecastDescription {
+display: inline-block;
+}
+
+.forecastIcon {
+  display: inline-block;
+}
+
+
 
 
 
