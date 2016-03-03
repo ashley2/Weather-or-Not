@@ -9,7 +9,7 @@ $(init);
 
 function init() {
 
-  
+
 
   $('#submitButton').click(getZip)
   $('#weatherContainer').on("click", ".close", deleteCity);
@@ -32,6 +32,7 @@ function init() {
   }
 
   function  getZip(){
+
     var newZip = $('#zipcodeInput').val();
     var zipStr = localStorage.zipcodes;
     zipcodes.push(newZip);
@@ -49,6 +50,10 @@ function init() {
     $.get(url)
     .success(function(data){
 
+      if (data.cod !== 200){
+        alert("Oops! Looks like we can't find this location! Try another!");
+      }
+      
       $('#weatherContainer').append(weatherCard(data));
 
     })
