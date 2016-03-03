@@ -9,13 +9,13 @@ $(init);
 
 function init() {
 
-// $('#infoContainer').addClass('template');
+
+  $('#submitButton').click(getZip)
+  $('#weatherContainer').on("click", ".close", deleteCity);
 
 
-$('#submitButton').click(getZip)
-$('#weatherContainer').on("click", ".close", deleteCity);
-loadFromLocalStorage();
-populateZips();
+  loadFromLocalStorage();
+  populateZips();
 
   // event.preventDeafult();
 
@@ -119,10 +119,38 @@ populateZips();
     zipcodes.splice(index, 1);
     saveToLocalStorage();
     $thisContainer.remove();
-  
+
 
   }
+
+  $('#weatherContainer').on("click", ".seeMore", function(){
+   console.log('hi hi');
+
+    var $thisContainer = $(this).closest('.infoContainer');
+
+    var index = $thisContainer.index();
+
+    $('.forecastContainer').append('hi')
+
+    // var url = `http://api.openweathermap.org/data/2.5/forecast?zip=${zipcodes},us&units=imperial&APPID=${apiKey}`
+  //   $.get(url)
+  //   .success(function(data){
+
+  //     // $('#weatherContainer').append(weatherCard(data));
+
+  //   })
+  //   .error(function(err){
+  //     console.log(err);
+  //   })
+  
+  });
+
+
 };
+
+
+
+
 
 
 
