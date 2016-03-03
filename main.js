@@ -45,7 +45,6 @@ function init() {
     var url = `http://api.openweathermap.org/data/2.5/weather?zip=${newZip},us&units=imperial&APPID=${apiKey}`
     $.get(url)
     .success(function(data){
-      // console.log('data', data);
 
       $('#weatherContainer').append(weatherCard(data));
 
@@ -68,7 +67,7 @@ function init() {
 
 
 var city = data.name;
-var temperature = data.main.temp;
+var temperature = Math.round(data.main.temp);
 var icon = data.weather[0].icon + ".png";
 var description = data.weather[0].description;
 var ID = data.id;
@@ -84,7 +83,7 @@ return $card;
 }
 
 function deleteCity(){
-  console.log('click')
+
   var $thisContainer = $(this).closest('.infoContainer');
 
   var index = $thisContainer.index();
@@ -102,56 +101,68 @@ $('#weatherContainer').on("click", ".seeMore", function(){
 
 
  var $thisContainer = $(this).closest('.infoContainer');
- // remove('id', template)
- $thisContainer.append('hi')
- console.log($thisContainer);
  var $cityID = $thisContainer.data("id")
-
  getMoreInfo($cityID);
 });
 
 function getMoreInfo($cityID){
-  var $thisContainer = $(this).closest('.infoContainer');
-  // console.log('th', $thisContainer);
-  //get id
+  // var $thisContainer = $(this).closest('.infoContainer');
 
-  var url = `http://api.openweathermap.org/data/2.5/forecast/daily?id=${$cityID}&cnt={5}&APPID=${apiKey}`
+  var url = `http://api.openweathermap.org/data/2.5/forecast/daily?id=${$cityID}&cnt=5&APPID=${apiKey}`
   $.get(url)
   .success(function(data){
-    console.log(data);
+    console.log('data2', data);
 
-    $('.forecastContainer').append(forecastCard(data));
 
-  })
+    $('.forecastContainer').append(fiveDayForecast(data));
+// 
+})
   .error(function(err){
     console.log(err);
   })
 
 }
 
-function  populateId() {
-  for (let id of ids){
-    getMoreInfo(id)
-  }
-}
+
+// function  populateId() {
+//   for (let id of ids){
+//     getMoreInfo(id)
+//   }
+// }
 
 function forecastCard(data){
   var $card = $('.forecastContainer').first().clone();
 
-  var forecastTempMin = data.list.temp.min;
-  var forecastTempMax = data.list.temp.max;
-  var forecastDescription = data.list.weather[0].description;
-  var forecastIcon = list[0].weather[0].icon + ".png"
-
+  var forecastTempMin = data.list[0].temp.min;
+  var forecastTempMax = data.list[0].temp.max;
+  var forecastDescription = data.list[0].weather[0].description;
+  var forecastIcon = data.list[0].weather[0].icon + ".png";
   $card.find(".forecastTempMin").text(forecastTempMin)
   $card.find(".forecastTempMax").text(forecastTempMax)
   $card.find(".forecastDescription").text(forecastDescription)
-  $card.find(".forecastIcon").attr('src', "http://openweathermap.org/img/f/" + icon)
+  $card.find(".forecastIcon").attr('src', "http://openweathermap.org/img/w/" + forecastIcon)
 
   return $card;
 
-} 
+}
 
+function fiveDayForecast(data){
+  var cards = [];
+  for (var i = 0; i < 5; i++){
+    var $card = $('.forecastContainer').first().clone().removeClass("forecastContainer");
+    var forecastTempMin = data.list[i].temp.min;
+    var forecastTempMax = data.list[i].temp.max;
+    var forecastDescription = data.list[i].weather[0].description;
+    var forecastIcon = data.list[i].weather[0].icon + ".png";
+    $card.find(".forecastTempMin").text(forecastTempMin)
+    $card.find(".forecastTempMax").text(forecastTempMax)
+    $card.find(".forecastDescription").text(forecastDescription)
+    $card.find(".forecastIcon").attr('src', "http://openweathermap.org/img/w/" + forecastIcon)
+    cards.push($card);
+  }
+  console.log(cards)
+    return cards;
+} 
 
 };
 
