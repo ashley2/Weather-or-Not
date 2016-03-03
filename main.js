@@ -45,7 +45,7 @@ function init() {
     var url = `http://api.openweathermap.org/data/2.5/weather?zip=${newZip},us&units=imperial&APPID=${apiKey}`
     $.get(url)
     .success(function(data){
-      console.log('data', data);
+      // console.log('data', data);
 
       $('#weatherContainer').append(weatherCard(data));
 
@@ -55,9 +55,6 @@ function init() {
     })
   }
 
-
-
-
   function  populateZips() {
     for (let zip of zipcodes){
      getZipInfo(zip)
@@ -65,24 +62,25 @@ function init() {
  }
 
 
-
-
  function weatherCard(data){
-  var $card = $('.infoContainer').first().clone();
+  var $card = $('#template').clone().attr("id", "");
+// var $card = $('.infoContainer').first().clone().attr("id", "");
 
-  var city = data.name;
-  var temperature = data.main.temp;
-  var icon = data.weather[0].icon + ".png";
-  var description = data.weather[0].description;
-  var ID = data.id;
 
-  $card.find(".cityName").text(city)
-  $card.find(".temperature").text(temperature + "˚F")
-  $card.find(".icon").attr('src', "http://openweathermap.org/img/w/" + icon)
-  $card.find(".description").text(description)
-  $card.attr("id", ID);
+var city = data.name;
+var temperature = data.main.temp;
+var icon = data.weather[0].icon + ".png";
+var description = data.weather[0].description;
+var ID = data.id;
 
-  return $card;
+
+$card.find(".cityName").text(city)
+$card.find(".temperature").text(temperature + "˚F")
+$card.find(".icon").attr('src', "http://openweathermap.org/img/w/" + icon)
+$card.find(".description").text(description)
+$card.data("id", ID);
+
+return $card;
 }
 
 function deleteCity(){
@@ -102,21 +100,25 @@ function deleteCity(){
 //get forecast
 $('#weatherContainer').on("click", ".seeMore", function(){
 
+
  var $thisContainer = $(this).closest('.infoContainer');
+ // remove('id', template)
  $thisContainer.append('hi')
- $thisContainer.data(id)
- getMoreInfo();
+ console.log($thisContainer);
+ var $cityID = $thisContainer.data("id")
+
+ getMoreInfo($cityID);
 });
 
-function getMoreInfo(){
+function getMoreInfo($cityID){
   var $thisContainer = $(this).closest('.infoContainer');
-  console.log('th', $thisContainer);
+  // console.log('th', $thisContainer);
   //get id
-  var url = 'http://api.openweathermap.org/data/2.5/forecast/daily?id=${city ID}&cnt=5&APPID=${apiKey}'
 
+  var url = `http://api.openweathermap.org/data/2.5/forecast/daily?id=${$cityID}&cnt={5}&APPID=${apiKey}`
   $.get(url)
   .success(function(data){
-
+    console.log(data);
 
     $('.forecastContainer').append(forecastCard(data));
 
@@ -139,10 +141,12 @@ function forecastCard(data){
   var forecastTempMin = data.list.temp.min;
   var forecastTempMax = data.list.temp.max;
   var forecastDescription = data.list.weather[0].description;
+  var forecastIcon = list[0].weather[0].icon + ".png"
 
   $card.find(".forecastTempMin").text(forecastTempMin)
   $card.find(".forecastTempMax").text(forecastTempMax)
   $card.find(".forecastDescription").text(forecastDescription)
+  $card.find(".forecastIcon").attr('src', "http://openweathermap.org/img/f/" + icon)
 
   return $card;
 
