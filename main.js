@@ -96,17 +96,14 @@ function deleteCity(){
 
 
 
-//get forecast
+
 $('#weatherContainer').on("click", ".seeMore", function(){
 
+  $('.seeMore').toggleClass('hidden');
+  $('.seeLess').toggleClass('hidden');
 
- var $thisContainer = $(this).closest('.infoContainer');
- var $cityID = $thisContainer.data("id")
- getMoreInfo($cityID);
-});
-
-function getMoreInfo($cityID){
-  // var $thisContainer = $(this).closest('.infoContainer');
+  var $thisContainer = $(this).closest('.infoContainer');
+  var $cityID = $thisContainer.data("id")
 
   var url = `http://api.openweathermap.org/data/2.5/forecast/daily?id=${$cityID}us&units=imperial&cnt=5&APPID=${apiKey}`
   $.get(url)
@@ -114,21 +111,21 @@ function getMoreInfo($cityID){
     console.log('data2', data);
 
 
-    $('.forecastContainer').append(fiveDayForecast(data));
-// 
-})
+    $thisContainer.append(fiveDayForecast(data));
+
+  })
   .error(function(err){
     console.log(err);
   })
 
-}
+})
 
 
-// function  populateId() {
-//   for (let id of ids){
-//     getMoreInfo(id)
-//   }
-// }
+$('#weatherContainer').on("click", ".seeLess", function(){
+
+  $('#weatherContainer').remove();
+
+})
 
 function forecastCard(data){
   var $card = $('.forecastContainer').first().clone();
@@ -161,7 +158,7 @@ function fiveDayForecast(data){
     cards.push($card);
   }
   console.log(cards)
-    return cards;
+  return cards;
 } 
 
 };
