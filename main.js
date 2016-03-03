@@ -9,6 +9,7 @@ $(init);
 
 function init() {
 
+  
 
   $('#submitButton').click(getZip)
   $('#weatherContainer').on("click", ".close", deleteCity);
