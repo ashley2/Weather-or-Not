@@ -1,12 +1,36 @@
 * {
   font-family: 'Raleway', sans-serif;
-  text-align: center; }
+  text-align: center;
+  color: #ADADAA; }
+
+body {
+  padding-bottom: 100px; }
 
 #header {
-  font-size: 50px; }
+  font-size: 50px;
+  color: #ADADAA; }
 
-#directions {
-  font-size: 20px; }
+#directionCont {
+  width: 100vw; }
+  #directionCont #directions {
+    margin-left: 35%;
+    width: 30%;
+    font-size: 20px;
+    color: #ADADAA; }
+
+#template {
+  display: none; }
+
+.close {
+  position: absolute;
+  right: 10px;
+  top: 10px; }
+
+.close:hover {
+  transform: scale(1.5); }
+
+.close:focus {
+  outline: none; }
 
 .infoContainer {
   border: 2px solid black;
@@ -15,7 +39,9 @@
   padding: 20px;
   padding-left: 20px;
   padding-right: 20px;
-  margin-top: 20px; }
+  margin-top: 30px;
+  box-shadow: 10px 10px 20px #3F3F3F;
+  position: relative; }
 
 #inputContainer {
   padding: 20px; }
@@ -23,34 +49,84 @@
 .cityName {
   font-size: 30px;
   display: inline-block;
-  vertical-align: middle;
-  margin: 10px; }
+  vertical-align: middle; }
 
 .temperature {
   font-size: 30px;
   display: inline-block;
-  vertical-align: middle;
-  margin: 10px; }
+  vertical-align: middle; }
 
 .description {
   font-size: 20px;
-  display: inline-block;
-  vertical-align: middle;
-  margin: 10px; }
+  vertical-align: middle; }
 
 .icon {
   display: inline-block;
-  font-size: 20px;
-  vertical-align: middle; }
+  width: 10%;
+  text-align: center; }
 
-.forecastTempMin {
-  display: inline-block; }
-
-.forecastTempMax {
-  display: inline-block; }
-
-.forecastDescription {
+.forecastContainer {
+  width: 20%;
   display: inline-block; }
 
 .forecastIcon {
-  display: inline-block; }
+  float: none !important;
+  width: auto; }
+
+#zipcodeInput {
+  border-radius: 5px; }
+
+#zipcodeInput:focus {
+  outline: none; }
+
+#submitButton {
+  color: #fff;
+  font-size: 20px;
+  text-shadow: -2px 2px #346392;
+  background-color: #4addfb;
+  background-image: linear-gradient(top, #6496c8, #346392);
+  box-shadow: inset 0 0 0 1px #27496d;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 1s ease; }
+
+#submitButton:hover {
+  background-color: #E8E05A;
+  box-shadow: inset 0 0 0 1px #27496d,0 5px 15px #193047; }
+
+#submitButton:active {
+  box-shadow: inset 0 0 0 1px #27496d,inset 0 5px 30px #193047; }
+
+#submitButton:focus {
+  outline: none; }
+
+#seeM, #seeL {
+  color: #fff;
+  font-size: 20px;
+  text-shadow: -2px 2px #346392;
+  background-color: #E8E05A;
+  background-image: linear-gradient(top, #6496c8, #346392);
+  box-shadow: inset 0 0 0 1px #27496d;
+  border: none;
+  border-radius: 5px;
+  transition: background-color 1s ease; }
+
+#seeM:hover {
+  background-color: #4addfb;
+  box-shadow: inset 0 0 0 1px #27496d,0 5px 15px #193047; }
+
+#seeM:active {
+  box-shadow: inset 0 0 0 1px #27496d,inset 0 5px 30px #193047; }
+
+#seeM:focus {
+  outline: none; }
+
+#seeL:hover {
+  background-color: #4addfb;
+  box-shadow: inset 0 0 0 1px #27496d,0 5px 15px #193047; }
+
+#seeL:active {
+  box-shadow: inset 0 0 0 1px #27496d,inset 0 5px 30px #193047; }
+
+#seeL:focus {
+  outline: none; }

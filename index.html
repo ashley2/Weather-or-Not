@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Current Weather</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.1/animate.min.css">
   <link href='https://fonts.googleapis.com/css?family=Raleway:400,200' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="style.css">
 
@@ -12,7 +13,9 @@
 <body>
 
   <div id="header">Weather or not</div>
-  <div id="directions">Need to find out whether or not you will need a jacket today? Enter a Zipcode to find the weather in that location and save it below!</div>
+  <div id="directionCont">
+    <div id="directions">Need to find out whether or not you will need a jacket today? Enter a City and State, or a Zipcode to find the weather in that area and save it below!</div>
+  </div>
 
   <div id="inputContainer" class="col-xs-12">
     <input id="zipcodeInput" type="text" placeholder="Zipcode"></input>
@@ -21,40 +24,44 @@
 
 
 
-  <div class="infoContainer card card-block text-xs-center" id="template"> 
-  <div class="cityName col-xs-12 col-md-3" >City Name</div>
-   <div class="temperature col-xs-6 col-sm-3">Temp</div>
-   <div class="description col-sm-6 col-sm-3">descr</div>
-   <img class="icon col-sm-1"></img>
-   <button class="close">X</button>
+  <div class="infoContainer" id="template"> 
+    <div class="row">
+      <button id="xOut" class="close">X</button>
+      <div class="cityName col-xs-12 col-sm-5" >City Name</div>
+      <div class="temperature col-xs-6 col-sm-3">Temp</div>
+      <div class="description col-xs-6 col-sm-3">descr</div>
+      <img class="icon col-xs-4 col-sm-3"></img>
+    </div>
 
-   <br>
-   <div class="forecastContainer">
-     <div>
+    <div class="row">
+    <button id="seeM" class="seeMore seeButton">See More</button>
+      <button id="seeL" class="seeLess seeButton hidden">See Less</button>
+    </div>
 
-       <div class="forecastTempMin col-xs-12"></div>
-       <div class="forecastTempMax col-xs-12"></div>
-       <div class="forecastDescription col-sm-12"></div>
-       <img class="forecastIcon col-sm-3"></img>
-
+    <div class="row">
+      <div class="forecastContainer">
+       <div>
+         <div class="forecastTempMin col-xs-12"></div>
+         <div class="forecastTempMax col-xs-12"></div>
+         <div class="forecastDescription col-xs-12"></div>
+         <img class="forecastIcon col-xs-3"></img>
+       </div>
+     </div>
    </div>
+
  </div>
- <button class="seeMore seeButton">See More</button>
- <button class="seeLess seeButton hidden">See Less</button>
-
-</div>
 
 
-<div id="weatherContainer">
+ <div id="weatherContainer">
 
 
-</div>
+ </div>
 
 
 
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="main.js"></script>
+ <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+ <script src="main.js"></script>
 
 </body>
 </html>

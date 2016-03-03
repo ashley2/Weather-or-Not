@@ -42,6 +42,8 @@ function init() {
   }
 
   function getZipInfo(newZip){
+
+    $('#zipcodeInput').val(' ');
     var url = `http://api.openweathermap.org/data/2.5/weather?zip=${newZip},us&units=imperial&APPID=${apiKey}`
     $.get(url)
     .success(function(data){
@@ -63,38 +65,38 @@ function init() {
 
  function weatherCard(data){
   var $card = $('#template').clone().attr("id", "");
-// var $card = $('.infoContainer').first().clone().attr("id", "");
 
 
-var city = data.name;
-var temperature = Math.round(data.main.temp);
-var icon = data.weather[0].icon + ".png";
-var description = data.weather[0].description;
-var ID = data.id;
+  var city = data.name;
+  var temperature = Math.round(data.main.temp);
+  var icon = data.weather[0].icon + ".png";
+  var description = data.weather[0].description;
+  var ID = data.id;
 
 
-$card.find(".cityName").text(city)
-$card.find(".temperature").text(temperature + "˚F")
-$card.find(".icon").attr('src', "http://openweathermap.org/img/w/" + icon)
-$card.find(".description").text(description)
-$card.data("id", ID);
+  $card.find(".cityName").text(city)
+  $card.find(".temperature").text(temperature + "˚F")
+  $card.find(".icon").attr('src', "http://openweathermap.org/img/w/" + icon)
+  $card.find(".description").text(description)
+  $card.data("id", ID);
 
-return $card;
+  $card.addClass('animated fadeInDown');
+  return $card;
 }
 
 function deleteCity(){
 
   var $thisContainer = $(this).closest('.infoContainer');
+  // $thisContainer.removeClass('animated fadeInDown').addClass('animated fadeOut');
+
+  // setTimeOut(function($thisContainer){
+  // }), 1000;
 
   var index = $thisContainer.index();
   zipcodes.splice(index, 1);
-  saveToLocalStorage();
   $thisContainer.remove();
+  saveToLocalStorage();
 }
-
-
-
-
 
 
 $('#weatherContainer').on("click", ".seeMore", function(){
@@ -107,7 +109,6 @@ $('#weatherContainer').on("click", ".seeMore", function(){
   var url = `http://api.openweathermap.org/data/2.5/forecast/daily?id=${$cityID}us&units=imperial&cnt=5&APPID=${apiKey}`
   $.get(url)
   .success(function(data){
-    console.log('data2', data);
 
 
     $thisContainer.append(fiveDayForecast(data));
@@ -124,9 +125,9 @@ $('#weatherContainer').on("click", ".seeLess", function(){
 
   var $thisContainer = $(this).closest('.infoContainer');
   $thisContainer.find(".seeButton").toggleClass("hidden")
-  $thisContainer.find(".forecastContainer").empty();
+  $thisContainer.find(".forecastContainer").remove();
 
-  fiveDayForecast();
+  // fiveDayForecast();
 
 })
 
