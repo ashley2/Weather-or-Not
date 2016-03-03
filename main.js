@@ -139,8 +139,8 @@ function fiveDayForecast(data){
     var forecastTempMax = Math.round(data.list[i].temp.max)
     var forecastDescription = data.list[i].weather[0].description;
     var forecastIcon = data.list[i].weather[0].icon + ".png";
-    $card.find(".forecastTempMin").text(forecastTempMin)
-    $card.find(".forecastTempMax").text(forecastTempMax)
+    $card.find(".forecastTempMin").text('Low:' + forecastTempMin)
+    $card.find(".forecastTempMax").text('High:' + forecastTempMax)
     $card.find(".forecastDescription").text(forecastDescription)
     $card.find(".forecastIcon").attr('src', "http://openweathermap.org/img/w/" + forecastIcon)
     cards.push($card);

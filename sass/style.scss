@@ -38,46 +38,53 @@
   // text-align: center;
   display: inline-block;
   vertical-align: middle;
-  margin-right: 10px;
+  margin: 10px;
 }
 .temperature {
   font-size: 30px;
   // text-align: center;
   display: inline-block;
   vertical-align: middle;
+  margin: 10px;
 
 
 }
 .description {
   font-size: 20px;
   // text-align: center;
-  display: inline-block;
+  // display: inline-block;
   vertical-align: middle;
+  margin: 10px;
 }
 .icon{
   display: inline-block;
-  font-size: 20px;
-  vertical-align: middle;
+  // vertical-align: middle;
+
 }
 
 .forecastContainer{
+  width: 20%
   display: inline-block;
 }
 .forecastTempMin{
-display: inline-block;
+// display: inline-block;
 }
 
 .forecastTempMax {
-display: inline-block;
+// display: inline-block;
 }
 
 .forecastDescription {
-display: inline-block;
+// display: inline-block;
 }
 
 .forecastIcon {
-  display: inline-block;
+  float: none !important;
+  width: 16%;
+  // display: inline-block;
 }
+
+
 
 
 
