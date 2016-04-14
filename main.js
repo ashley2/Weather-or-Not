@@ -133,8 +133,6 @@ $('#weatherContainer').on("click", ".seeLess", function(){
   $thisContainer.find(".seeButton").toggleClass("hidden")
   $thisContainer.find(".forecastContainer").remove();
 
-  // fiveDayForecast();
-
 })
 
 
