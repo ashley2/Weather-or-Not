@@ -70,7 +70,17 @@ function init() {
 
 
  function weatherCard(data){
-  var $card = $('#template').clone().attr("id", "");
+  var $card = $('#template').clone().attr("id", "")
+  .sortable({
+    cursor: 'move',
+    // items: ''
+  })
+  .disableSelection();
+  // .draggable({ 
+  //   containment:'parent', 
+  //   cursor: 'move',
+  //   snap: '#content'
+  //   })
 
 
   var city = data.name;
@@ -115,24 +125,18 @@ $('#weatherContainer').on("click", ".seeMore", function(){
   var url = `http://api.openweathermap.org/data/2.5/forecast/daily?id=${$cityID}us&units=imperial&cnt=5&APPID=${apiKey}`
   $.get(url)
   .success(function(data){
-
-
     $thisContainer.append(fiveDayForecast(data));
-
   })
   .error(function(err){
     console.log(err);
   })
-
 })
 
 
 $('#weatherContainer').on("click", ".seeLess", function(){
-
   var $thisContainer = $(this).closest('.infoContainer');
   $thisContainer.find(".seeButton").toggleClass("hidden")
   $thisContainer.find(".forecastContainer").remove();
-
 })
 
 

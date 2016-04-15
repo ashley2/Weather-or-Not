@@ -127,3 +127,19 @@ body {
 
 #seeL:focus {
   outline: none; }
+
+@media (max-width: 660px) {
+  .cityName, .temperature, .description {
+    font-size: 2rem;
+    display: inline-block;
+    vertical-align: middle; }
+  .icon {
+    display: inline-block;
+    width: 10%;
+    text-align: center; }
+  #seeM, #seeL {
+    height: 15px;
+    width: 60px;
+    color: black;
+    text-shadow: none;
+    font-size: 10px; } }
