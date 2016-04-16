@@ -40,7 +40,6 @@ function init() {
     localStorage.zipcodes = newZipStr;
     saveToLocalStorage()
     getZipInfo(newZip)
-
   }
 
   function getZipInfo(newZip){
@@ -71,16 +70,6 @@ function init() {
 
  function weatherCard(data){
   var $card = $('#template').clone().attr("id", "")
-  .sortable({
-    cursor: 'move',
-    // items: ''
-  })
-  .disableSelection();
-  // .draggable({ 
-  //   containment:'parent', 
-  //   cursor: 'move',
-  //   snap: '#content'
-  //   })
 
 
   var city = data.name;
@@ -137,6 +126,9 @@ $('#weatherContainer').on("click", ".seeLess", function(){
   var $thisContainer = $(this).closest('.infoContainer');
   $thisContainer.find(".seeButton").toggleClass("hidden")
   $thisContainer.find(".forecastContainer").remove();
+}).sortable({
+ cursor: 'move',
+ axis: "y"
 })
 
 
