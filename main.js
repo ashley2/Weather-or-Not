@@ -15,6 +15,7 @@ function init() {
   $('#weatherContainer').on("click", ".close", deleteCity);
 
 
+
   loadFromLocalStorage();
   populateZips();
 
@@ -53,7 +54,11 @@ function init() {
         alert("Oops! Looks like we can't find this location! Try another!");
       }
       
-      $('#weatherContainer').append(weatherCard(data));
+      $('#weatherContainer').append(weatherCard(data))
+      setTimeout(function(){
+        $('.infoContainer').removeClass('animated');
+      }, 2000);
+
 
     })
     .error(function(err){
@@ -126,10 +131,12 @@ $('#weatherContainer').on("click", ".seeLess", function(){
   var $thisContainer = $(this).closest('.infoContainer');
   $thisContainer.find(".seeButton").toggleClass("hidden")
   $thisContainer.find(".forecastContainer").remove();
-}).sortable({
+})
+.sortable({
  cursor: 'move',
  axis: "y"
 })
+
 
 
 function fiveDayForecast(data){
